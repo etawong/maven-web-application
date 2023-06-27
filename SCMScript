@@ -19,11 +19,14 @@ stage('5.deploy2UAT'){
 }
 stage('6.Approval'){
 	sh "echo 'apps ready for review' "
-	    timeout(time:1, unit:'MINUTES') {
+	    timeout(time:5, unit:'MINUTES') {
     input message: 'Application ready for deployment, Please review and approve'
 	    }
 }
 stage('7. deploy2Production'){
 deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://52.41.255.215:8177')], contextPath: null, war: 'target/*.war'
+}
+stage('8.notification'){
+    emailext body: 'Everything is deployed to production as expected. Great job Team.', subject: 'Deployed', to: 'etawong@gmail.com'
 }
 }
