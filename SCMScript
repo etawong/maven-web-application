@@ -1,9 +1,9 @@
 node{
   def mavenHome = tool name: 'maven3.9.2'
   stage('1.GetCode'){
-    git "https://github.com/LandmakTechnology/maven-web-application"
-    //sh "git clone https://github.com/LandmakTechnology/maven-web-application"
-    //bat "git clone https://github.com/LandmakTechnology/maven-web-application"
+    git "https://github.com/etawong/maven-web-application"
+    //sh "git clone https://github.com/etawong/maven-web-application"
+    //bat "git clone https://github.com/etawong/maven-web-application"
   }
   stage('2.Build'){
 	sh "${mavenHome}/bin/mvn package"
