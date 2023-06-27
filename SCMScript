@@ -15,7 +15,7 @@ stage('4.upload'){
 	sh "${mavenHome}/bin/mvn deploy"
 }
 stage('5.deploy2UAT'){
- deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://52.41.255.215:8177')], contextPath: null, war: 'target/*.war'
+ deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://54.218.76.134:8177')], contextPath: null, war: 'target/*.war'
 }
 stage('6.Approval'){
 	//sh "echo 'apps ready for review' "
@@ -24,7 +24,7 @@ stage('6.Approval'){
 	    }
 }
 stage('7. deploy2Production'){
-deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://52.41.255.215:8177')], contextPath: null, war: 'target/*.war'
+deploy adapters: [tomcat9(credentialsId: 'Tomcat-credentials', path: '', url: 'http://54.218.76.134:8177')], contextPath: null, war: 'target/*.war'
 }
 stage('8.notification'){
     emailext body: 'Everything is deployed to production as expected. Great job Team.', subject: 'Deployed', to: 'etawong@gmail.com'
